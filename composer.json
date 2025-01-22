@@ -1,0 +1,21 @@
+{
+    "name": "abdulmajidcse/event-management",
+    "description": "This is a simple event management system.",
+    "autoload": {
+        "psr-4": {
+            "Abdulmajidcse\\EventManagement\\": "src/"
+        },
+        "files": [
+            "helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Md Abdul Majid",
+            "email": "abdulmajidcse@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    }
+}
