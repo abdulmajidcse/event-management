@@ -2,10 +2,10 @@
 
 namespace Abdulmajidcse\EventManagement\Pages;
 
-class HomePage
+class AboutPage
 {
     public function index()
     {
-        echo "Hello World";
+        echo "About Page";
     }
 }
