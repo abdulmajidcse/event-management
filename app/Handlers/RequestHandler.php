@@ -1,8 +1,8 @@
 <?php
 
-namespace Abdulmajidcse\EventManagement;
+namespace App\Handlers;
 
-use Abdulmajidcse\EventManagement\Interfaces\RequestHandlerInterface;
+use App\Interfaces\RequestHandlerInterface;
 
 class RequestHandler implements RequestHandlerInterface
 {
@@ -93,7 +93,7 @@ class RequestHandler implements RequestHandlerInterface
             }
         } else {
             // return 404 page if the route not found
-            return view('404.php');
+            return notFoundView();
         }
     }
 }

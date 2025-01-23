@@ -1,6 +1,6 @@
 <?php
 
-namespace Abdulmajidcse\EventManagement\Pages;
+namespace App\Pages;
 
 class AboutPage
 {

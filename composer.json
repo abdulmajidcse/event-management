@@ -3,10 +3,10 @@
     "description": "This is a simple event management system.",
     "autoload": {
         "psr-4": {
-            "Abdulmajidcse\\EventManagement\\": "src/"
+            "App\\": "app/"
         },
         "files": [
-            "helpers.php"
+            "app/helpers.php"
         ]
     },
     "authors": [

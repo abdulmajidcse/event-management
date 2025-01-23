@@ -1,6 +1,6 @@
 <?php
 
-namespace Abdulmajidcse\EventManagement\Interfaces;
+namespace App\Interfaces;
 
 interface RequestHandlerInterface
 {

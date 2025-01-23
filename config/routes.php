@@ -1,8 +1,8 @@
 <?php
 
-use Abdulmajidcse\EventManagement\Pages\AboutPage;
-use Abdulmajidcse\EventManagement\Pages\HomePage;
-use Abdulmajidcse\EventManagement\RequestHandler;
+use App\Handlers\RequestHandler;
+use App\Pages\AboutPage;
+use App\Pages\HomePage;
 
 /**
  * Application Routes handler
