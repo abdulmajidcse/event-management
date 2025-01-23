@@ -15,8 +15,26 @@ class RequestHandler implements RequestHandlerInterface
     public function __construct()
     {
         // get the uri and request method
-        $this->uri = $_SERVER['PATH_INFO'] ?? '/';
+        $this->uri = $this->getCurrentUri();
         $this->method = $_SERVER['REQUEST_METHOD'];
+    }
+
+    private function  getCurrentUri(): string
+    {
+        // get request path
+        $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        // get server script name
+        $scriptName = $_SERVER['SCRIPT_NAME'];
+        $basePath = str_replace('/index.php', '', $scriptName);
+        // remove script name from path as a uri
+        $uri = str_replace($scriptName, '', $path);
+        $uri = str_replace($basePath, '', $uri);
+        // remove '/' if exists between start and end
+        $uri = trim($uri, '/');
+        // add '/' at the beginning
+        $uri = '/' . $uri;
+
+        return $uri;
     }
 
     /**
