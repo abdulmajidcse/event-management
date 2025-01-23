@@ -9,6 +9,16 @@
  */
 require __DIR__ . '/../vendor/autoload.php';
 
-$app = require_once __DIR__ . '/../config/routes.php';
 
-$app->run();
+try {
+    // load the application
+    (require_once __DIR__ . '/../config/routes.php')->run();
+} catch (\Throwable $th) {
+    if (config('debug') == true) {
+        // throw exception when debug enables
+        throw new \Exception($th);
+    } else {
+        // only show server error page
+        serverErrorView();
+    }
+}

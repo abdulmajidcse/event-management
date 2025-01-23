@@ -27,7 +27,26 @@ if (!function_exists('view')) {
 if (!function_exists('notFoundView')) {
     function notFoundView(array $data = [])
     {
+        http_response_code(404);
         // default 404 view
         return view('errors.404', $data);
+    }
+}
+
+if (!function_exists('serverErrorView')) {
+    function serverErrorView(array $data = [])
+    {
+        http_response_code(500);
+        // default 500 view
+        return view('errors.500', $data);
+    }
+}
+
+if (!function_exists('config')) {
+    function config(string $key): ?string
+    {
+        // get application config value
+        $config = require __DIR__ . '/../config/app.php';
+        return $config[$key] ?? null;
     }
 }

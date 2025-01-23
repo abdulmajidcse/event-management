@@ -99,16 +99,11 @@ class RequestHandler implements RequestHandlerInterface
             // get the action
             $action = $targetRoute['action'];
             [$controller, $method] = $action;
-            if (class_exists($controller) && method_exists($controller, $method)) {
-                // create instance of the controller
-                $controllerInstance = new $controller();
-                // call the method of the controller
-                // and return the result
-                return $controllerInstance->$method();
-            } else {
-                // throw exception if the class or method not found
-                throw new \Exception('class or method not found where the uri is ' . $this->uri . ' and the class is ' . $controller . ' and the method is ' . $method);
-            }
+            // create instance of the controller
+            $controllerInstance = new $controller();
+            // call the method of the controller
+            // and return the result
+            return $controllerInstance->$method();
         } else {
             // return 404 page if the route not found
             return notFoundView();
