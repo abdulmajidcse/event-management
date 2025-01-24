@@ -9,6 +9,11 @@
  */
 require __DIR__ . '/../vendor/autoload.php';
 
+// disable debugging mode
+if (config('debug') != true) {
+    error_reporting(0);
+    ini_set('display_errors', 'off');
+}
 
 try {
     // load the application
