@@ -46,4 +46,4 @@
         </div>
     </header>
 
-    <main class="container mt-3" style="min-height: calc(100vh - 122px);">
+    <main class="container pt-3" style="min-height: calc(100vh - 122px);">
