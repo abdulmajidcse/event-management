@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php view('errors.layouts.header', ['title' => 'Server Error']) ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>500 | Server Error</title>
-</head>
+<div class="d-flex justify-content-center" style="height: 100vh;">
+    <p class="align-self-center" style="font-size: 20px; font-weight: lighter;">
+        500 | Server Error
+    </p>
+</div>
 
-<body>
-    <h3>500 | Server Error</h3>
-</body>
-
-</html>
+<?php view('errors.layouts.footer') ?>
