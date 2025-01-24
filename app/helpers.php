@@ -50,3 +50,25 @@ if (!function_exists('config')) {
         return $config[$key] ?? null;
     }
 }
+
+if (!function_exists('asset')) {
+    // generate asset url
+    function asset(string $path): string
+    {
+        // get asset url
+        $assetUrl = config('asset_url') ?? '';
+
+        return $assetUrl . '/' . $path;
+    }
+}
+
+if (!function_exists('url')) {
+    // generate url
+    function url(string $uri): string
+    {
+        // get asset url
+        $appUrl = config('url') ?? '';
+
+        return $appUrl . '/' . trim($uri, '/');
+    }
+}

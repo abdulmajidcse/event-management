@@ -6,6 +6,6 @@ class AboutPage
 {
     public function index()
     {
-        echo "About Page";
+        return view('about');
     }
 }
