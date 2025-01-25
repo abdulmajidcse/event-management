@@ -7,6 +7,7 @@
     <title><?php echo $title . ' - ' . config('name') ?></title>
 
     <link rel="stylesheet" href="<?php echo asset('/css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?php echo asset('/css/app.css') ?>">
 </head>
 
 <body>
@@ -24,7 +25,7 @@
                                 <a class="nav-link <?php echo currentUri() == '/' ? 'active' : '' ?>" aria-current="page" href="<?php echo url('/') ?>">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link <?php echo currentUri() == '/about' ? 'active' : '' ?>" href="<?php echo url('/about') ?>">About</a>
+                                <a class="nav-link <?php echo currentUri() == '/register' ? 'active' : '' ?>" href="<?php echo url('/register') ?>">Register</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -46,4 +47,4 @@
         </div>
     </header>
 
-    <main class="container pt-3" style="min-height: calc(100vh - 122px);">
+    <main class="container py-3" style="min-height: calc(100vh - 122px);">

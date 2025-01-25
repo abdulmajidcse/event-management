@@ -2,10 +2,10 @@
 
 namespace App\Pages;
 
-class AboutPage
+class LoginPage
 {
     public function index()
     {
-        return view('about');
+        return view('login');
     }
 }

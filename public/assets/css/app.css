@@ -1,0 +1,12 @@
+.login-card,
+.register-card {
+    width: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+
+    .login-card,
+    .register-card {
+        width: 500px;
+    }
+}

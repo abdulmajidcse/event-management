@@ -1,8 +1,9 @@
 <?php
 
 use App\Handlers\RequestHandler;
-use App\Pages\AboutPage;
+use App\Pages\RegisterPage;
 use App\Pages\HomePage;
+use App\Pages\LoginPage;
 
 /**
  * Application Routes handler
@@ -14,7 +15,8 @@ $app = new RequestHandler();
  * Define the application routes here
  */
 $app->get('/', [HomePage::class, 'index']);
-$app->get('/about', [AboutPage::class, 'index']);
+$app->get('/register', [RegisterPage::class, 'index']);
+$app->get('/login', [LoginPage::class, 'index']);
 
 
 
