@@ -2,9 +2,10 @@
 
 namespace App\Handlers;
 
+use App\Interfaces\DatabaseHandlerInterface;
 use PDO;
 
-abstract class DatabaseHandler
+abstract class DatabaseHandler implements DatabaseHandlerInterface
 {
     private ?PDO $pdo;
 
@@ -20,7 +21,7 @@ abstract class DatabaseHandler
     /**
      * Get DB instance
      */
-    public function db()
+    public function db(): PDO
     {
         return $this->pdo;
     }
