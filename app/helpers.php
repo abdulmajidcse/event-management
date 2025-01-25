@@ -43,7 +43,7 @@ if (!function_exists('serverErrorView')) {
 }
 
 if (!function_exists('config')) {
-    function config(string $key): ?string
+    function config(string $key): mixed
     {
         // get application config value
         $config = require __DIR__ . '/../config/app.php';
