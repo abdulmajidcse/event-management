@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title . ' - ' . config('name') ?></title>
 
-    <link rel="stylesheet" href="<?php echo asset('css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?php echo asset('/css/bootstrap.min.css') ?>">
 </head>
 
 <body>
@@ -21,22 +21,22 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link text-light" aria-current="page" href="<?php echo url('/') ?>">Home</a>
+                                <a class="nav-link <?php echo currentUri() == '/' ? 'active' : '' ?>" aria-current="page" href="<?php echo url('/') ?>">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="<?php echo url('about') ?>">About</a>
+                                <a class="nav-link <?php echo currentUri() == '/about' ? 'active' : '' ?>" href="<?php echo url('/about') ?>">About</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link text-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Admin
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item text-light" href="#">Profile</a></li>
-                                    <li><a class="dropdown-item text-light" href="#">Settings</a></li>
+                                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Settings</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item text-light" href="#">Logout</a></li>
+                                    <li><a class="dropdown-item" href="#">Logout</a></li>
                                 </ul>
                             </li>
                         </ul>

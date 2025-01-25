@@ -58,7 +58,7 @@ if (!function_exists('asset')) {
         // get asset url
         $assetUrl = config('asset_url') ?? '';
 
-        return $assetUrl . '/' . $path;
+        return $assetUrl . $path;
     }
 }
 
@@ -69,6 +69,21 @@ if (!function_exists('url')) {
         // get asset url
         $appUrl = config('url') ?? '';
 
-        return $appUrl . '/' . trim($uri, '/');
+        return $appUrl . $uri;
+    }
+}
+
+if (!function_exists('currentUri')) {
+    // generate currentUri
+    function currentUri(): string
+    {
+        // get request uri
+        $uri = str_replace('?' . $_SERVER["QUERY_STRING"], '', $_SERVER["REQUEST_URI"]);
+        // get server script name
+        $scriptName = str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']);
+        // remove script name from path as a uri
+        $uri = str_replace($scriptName, '', $uri);
+
+        return $uri;
     }
 }

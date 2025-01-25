@@ -15,6 +15,6 @@ class UserQuery extends DatabaseHandler
         $query = $this->db()->prepare("SELECT * FROM users ORDER BY id DESC");
         $query->execute();
 
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        return $query->fetchAll(PDO::FETCH_OBJ);
     }
 }
