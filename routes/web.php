@@ -2,6 +2,7 @@
 
 use App\Pages\HomePage;
 use App\Handlers\RouteHandler;
+use App\Pages\Auth\ChangePasswordPage;
 use App\Pages\Guest\LoginPage;
 use App\Pages\Auth\DashboardPage;
 use App\Pages\Auth\LogoutPage;
@@ -34,4 +35,6 @@ $route->post('/login', [LoginPage::class, 'store']);
 $route->get('/dashboard', [DashboardPage::class, 'index']);
 $route->get('/profile', [ProfilePage::class, 'index']);
 $route->post('/profile', [ProfilePage::class, 'update']);
+$route->get('/change-password', [ChangePasswordPage::class, 'index']);
+$route->post('/change-password', [ChangePasswordPage::class, 'changePassword']);
 $route->post('/logout', [LogoutPage::class, 'logout']);

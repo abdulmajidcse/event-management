@@ -7,6 +7,19 @@ use PDO;
 
 class UserQuery extends DatabaseHandler
 {
+
+    /**
+     * Password bcrypt
+     */
+    private function bcrypt(string $password)
+    {
+        $hashOptions = [
+            'cost' => 12,
+        ];
+
+        return password_hash($password, PASSWORD_BCRYPT, $hashOptions);
+    }
+
     /**
      * Create a new account
      * 
@@ -16,11 +29,7 @@ class UserQuery extends DatabaseHandler
      */
     public function createUser(array $data): bool
     {
-        $hashOptions = [
-            'cost' => 12,
-        ];
-
-        $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT, $hashOptions);
+        $data['password'] = $this->bcrypt($data['password']);
 
         $query = $this->db()->prepare("INSERT INTO `users`(`name`, `email`, `password`) VALUES (?, ?, ?)");
 
@@ -39,6 +48,22 @@ class UserQuery extends DatabaseHandler
         $query = $this->db()->prepare("UPDATE `users` SET `name` = ?, `email` = ? WHERE `id` = ?");
 
         return $query->execute([$data['name'], $data['email'], $data['id']]);
+    }
+
+    /**
+     * Update user password
+     * 
+     * @param array $data
+     * 
+     * @return bool
+     */
+    public function updatePassword(array $data): bool
+    {
+        $password = $this->bcrypt($data['password']);
+
+        $query = $this->db()->prepare("UPDATE `users` SET `password` = ? WHERE `id` = ?");
+
+        return $query->execute([$password, $data['id']]);
     }
 
     /**
