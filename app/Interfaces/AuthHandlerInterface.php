@@ -38,4 +38,11 @@ interface AuthHandlerInterface
      * @return bool
      */
     public function check(): bool;
+
+    /**
+     * Logout authenticated user
+     * 
+     * @return void
+     */
+    public function logout(): void;
 }

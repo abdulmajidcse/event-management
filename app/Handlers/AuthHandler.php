@@ -91,4 +91,14 @@ class AuthHandler implements AuthHandlerInterface
     {
         return boolval($this->user());
     }
+
+    /**
+     * Logout authenticated user
+     * 
+     * @return void
+     */
+    public function logout(): void
+    {
+        $this->attempt(null);
+    }
 }

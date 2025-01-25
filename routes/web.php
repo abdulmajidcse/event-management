@@ -4,6 +4,7 @@ use App\Pages\HomePage;
 use App\Handlers\RouteHandler;
 use App\Pages\Guest\LoginPage;
 use App\Pages\Auth\DashboardPage;
+use App\Pages\Auth\LogoutPage;
 use App\Pages\Guest\RegisterPage;
 
 // route instance
@@ -30,3 +31,4 @@ $route->post('/login', [LoginPage::class, 'store']);
  * Auth routes
  */
 $route->get('/dashboard', [DashboardPage::class, 'index']);
+$route->post('/logout', [LogoutPage::class, 'logout']);

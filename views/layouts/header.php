@@ -36,7 +36,16 @@
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                                        <li>
+                                            <form method="POST" action="<?php echo url('/logout'); ?>">
+                                                <a href="<?php echo url('/logout'); ?>"
+                                                    class="dropdown-item"
+                                                    onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                                                    Logout
+                                                </a>
+                                            </form>
+                                        </li>
                                     </ul>
                                 </li>
                             <?php } else { ?>
