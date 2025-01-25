@@ -4,6 +4,7 @@
  * All helper functions are defined here
  */
 
+use App\Handlers\RequestHandler;
 use App\Handlers\ResponseHandler;
 
 /**
@@ -99,5 +100,17 @@ if (!function_exists('response')) {
     function response(): ResponseHandler
     {
         return ResponseHandler::load();
+    }
+}
+
+if (!function_exists('request')) {
+    /**
+     * Get request instance
+     * 
+     * @return RequestHandler
+     */
+    function request(): RequestHandler
+    {
+        return new RequestHandler;
     }
 }

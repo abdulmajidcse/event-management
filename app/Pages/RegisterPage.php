@@ -11,6 +11,6 @@ class RegisterPage
 
     public function store()
     {
-        echo response()->json($_REQUEST);
+        echo response()->json(request()->input());
     }
 }
