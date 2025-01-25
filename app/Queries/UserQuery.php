@@ -28,6 +28,20 @@ class UserQuery extends DatabaseHandler
     }
 
     /**
+     * Update user data
+     * 
+     * @param array $data
+     * 
+     * @return bool
+     */
+    public function updateUser(array $data): bool
+    {
+        $query = $this->db()->prepare("UPDATE `users` SET `name` = ?, `email` = ? WHERE `id` = ?");
+
+        return $query->execute([$data['name'], $data['email'], $data['id']]);
+    }
+
+    /**
      * Single user data by id
      * 
      * @param int $id

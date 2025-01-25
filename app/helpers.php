@@ -62,7 +62,7 @@ if (!function_exists('asset')) {
         // get asset url
         $assetUrl = config('asset_url') ?? '';
 
-        return $assetUrl . $path;
+        return $assetUrl . $path . '?v=1.0.0';
     }
 }
 

@@ -1,12 +1,10 @@
-.login-card,
-.register-card {
+.page-flex-card {
     width: 100%;
 }
 
 @media screen and (min-width: 1000px) {
 
-    .login-card,
-    .register-card {
+    .page-flex-card {
         width: 500px;
     }
 }

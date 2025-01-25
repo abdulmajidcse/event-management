@@ -1,7 +1,7 @@
 <?php view('layouts.header', ['title' => 'Register']) ?>
 
 <div class="d-flex justify-content-center" style="min-height: calc(100vh - 154px);">
-    <div class="align-self-center card border-secondary register-card my-3">
+    <div class="align-self-center card border-secondary page-flex-card my-3">
         <div class="card-header">
             <h5>Create an account</h5>
         </div>
