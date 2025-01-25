@@ -4,6 +4,9 @@ namespace App\FormRequest;
 
 class RegisterFormRequest extends FormRequest
 {
+    /**
+     * Validate request data
+     */
     public function validate()
     {
         $data = $this->sanitizeData(request()->input(), ['email']);
@@ -55,7 +58,7 @@ class RegisterFormRequest extends FormRequest
             // invalid data
             $this->invalid($data, $errors);
 
-            redirect('/register');
+            return redirect('/register');
         }
 
         return $data;

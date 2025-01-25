@@ -4,6 +4,7 @@
  * All helper functions are defined here
  */
 
+use App\Handlers\AuthHandler;
 use App\Handlers\RequestHandler;
 use App\Handlers\ResponseHandler;
 
@@ -239,5 +240,17 @@ if (!function_exists('getStatusMessage')) {
         }
 
         return $data;
+    }
+}
+
+if (!function_exists('auth')) {
+    /**
+     * AuthHandler instance
+     * 
+     * @return AuthHandler
+     */
+    function auth(): AuthHandler
+    {
+        return AuthHandler::configure();
     }
 }

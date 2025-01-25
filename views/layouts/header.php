@@ -25,22 +25,28 @@
                             <li class="nav-item">
                                 <a class="nav-link <?php echo currentUri() == '/' ? 'active' : '' ?>" aria-current="page" href="<?php echo url('/') ?>">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link <?php echo currentUri() == '/register' ? 'active' : '' ?>" href="<?php echo url('/register') ?>">Register</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Admin
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Logout</a></li>
-                                </ul>
-                            </li>
+                            <?php if (auth()->check()) { ?>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <?php echo auth()->user()->name; ?>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                                    </ul>
+                                </li>
+                            <?php } else { ?>
+                                <li class="nav-item">
+                                    <a class="nav-link <?php echo currentUri() == '/login' ? 'active' : '' ?>" href="<?php echo url('/login') ?>">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <?php echo currentUri() == '/register' ? 'active' : '' ?>" href="<?php echo url('/register') ?>">Register</a>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>

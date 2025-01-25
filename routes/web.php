@@ -1,9 +1,10 @@
 <?php
 
-use App\Handlers\RouteHandler;
-use App\Pages\RegisterPage;
 use App\Pages\HomePage;
-use App\Pages\LoginPage;
+use App\Handlers\RouteHandler;
+use App\Pages\Guest\LoginPage;
+use App\Pages\Auth\DashboardPage;
+use App\Pages\Guest\RegisterPage;
 
 // route instance
 $route = RouteHandler::load();
@@ -12,7 +13,20 @@ $route = RouteHandler::load();
  * Define the application web routes here
  */
 
+/**
+ * Public routes
+ */
 $route->get('/', [HomePage::class, 'index']);
+
+/**
+ * Guest routes
+ */
 $route->get('/register', [RegisterPage::class, 'index']);
 $route->post('/register', [RegisterPage::class, 'store']);
 $route->get('/login', [LoginPage::class, 'index']);
+$route->post('/login', [LoginPage::class, 'store']);
+
+/**
+ * Auth routes
+ */
+$route->get('/dashboard', [DashboardPage::class, 'index']);

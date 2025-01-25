@@ -31,7 +31,7 @@ class Application implements ApplicationInterface
     private function initSession()
     {
         session_start();
-        session_regenerate_id();
+        session_regenerate_id(true);
     }
 
     /**
