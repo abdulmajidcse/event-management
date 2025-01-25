@@ -7,6 +7,7 @@
     <title><?php echo $title . ' - ' . config('name') ?></title>
 
     <link rel="stylesheet" href="<?php echo asset('/css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?php echo asset('/css/sweetalert2.min.css') ?>">
     <link rel="stylesheet" href="<?php echo asset('/css/app.css') ?>">
 </head>
 

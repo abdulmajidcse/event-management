@@ -75,6 +75,6 @@ class Application implements ApplicationInterface
      */
     private function removeSessionFlashData()
     {
-        unset($_SESSION['invalid_request_data']);
+        unset($_SESSION['invalid_request_data'], $_SESSION['status_message']);
     }
 }
