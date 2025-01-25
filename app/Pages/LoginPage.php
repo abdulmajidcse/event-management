@@ -6,6 +6,8 @@ class LoginPage
 {
     public function index()
     {
+        print_r(getStatusMessage());
+        
         return view('login');
     }
 }

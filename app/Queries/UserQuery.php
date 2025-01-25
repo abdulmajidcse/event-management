@@ -7,6 +7,19 @@ use PDO;
 
 class UserQuery extends DatabaseHandler
 {
+
+    public function createUser(array $data)
+    {
+        $hashOptions = [
+            'cost' => 12,
+        ];
+
+        $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT, $hashOptions);
+
+        $query = $this->db()->prepare("INSERT INTO `users`(`name`, `email`, `password`) VALUES (?, ?, ?)");
+        $query->execute([$data['name'], $data['email'], $data['password']]);
+    }
+
     /**
      * get  all user from users table
      */
