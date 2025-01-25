@@ -6,7 +6,22 @@
     </div>
 </footer>
 
-<script src="<?php echo asset('js/bootstrap.bundle.min.js') ?>"></script>
+<script src="<?php echo asset('/js/bootstrap.bundle.min.js') ?>"></script>
+<script src="<?php echo asset('/js/sweetalert2.all.min.js') ?>"></script>
+
+<?php
+$statusMessage = getStatusMessage();
+if (!empty($statusMessage['message']) && !empty($statusMessage['type'])) {
+?>
+    <script>
+        Swal.fire({
+            icon: `<?php echo $statusMessage['type']; ?>`,
+            title: `<?php echo ucfirst($statusMessage['type']); ?>`,
+            text: `<?php echo $statusMessage['message']; ?>`,
+            showConfirmButton: true,
+        });
+    </script>
+<?php } ?>
 </body>
 
 </html>

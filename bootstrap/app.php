@@ -1,13 +1,6 @@
 <?php
 
-/**
- * This is the application bootstrap file.
- * 
- * It loads application routes
- * And run the application
- *
- */
-require __DIR__ . '/../vendor/autoload.php';
+use App\Application;
 
 // disable debugging mode
 if (config('debug') != true) {
@@ -16,8 +9,8 @@ if (config('debug') != true) {
 }
 
 try {
-    // load the application
-    (require_once __DIR__ . '/../config/routes.php')->run();
+    // run the application
+    Application::configure()->create();
 } catch (\Throwable $th) {
     if (config('debug') == true) {
         // throw exception when debug enables

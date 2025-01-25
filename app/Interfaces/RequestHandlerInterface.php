@@ -4,26 +4,12 @@ namespace App\Interfaces;
 
 interface RequestHandlerInterface
 {
-    /**
-     * get route
-     * @param string $uri
-     * @param array $action
-     * 
-     * @return RequestHandlerInterface
-     */
-    public function get(string $uri, array $action);
+    // get query param
+    public function query(string $key = null, mixed $default = null): mixed;
 
-    /**
-     * post route
-     * @param string $uri
-     * @param array $action
-     * 
-     * @return RequestHandlerInterface
-     */
-    public function post(string $uri, array $action);
+    // get form data
+    public function input(string $key = null, mixed $default = null): mixed;
 
-    /**
-     * run the application
-     */
-    public function run();
+    // get all request data
+    public function all(string $key = null, mixed $default = null): mixed;
 }

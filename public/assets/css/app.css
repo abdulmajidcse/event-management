@@ -1,0 +1,10 @@
+.page-flex-card {
+    width: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+
+    .page-flex-card {
+        width: 500px;
+    }
+}

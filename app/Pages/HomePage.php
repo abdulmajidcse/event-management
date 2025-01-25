@@ -8,11 +8,8 @@ class HomePage
 {
     public function index()
     {
-        header('Content-type: application/json');
+        $data['users'] = (new UserQuery())->getAllUser();
 
-        $users = (new UserQuery())->getAllUser();
-        echo json_encode($users);
-
-        // return view('home', ['message' => 'Welcome', 'name' => 'Abdul Majid']);
+        return view('home', $data);
     }
 }
