@@ -13,4 +13,12 @@ return [
     'url' => 'http://event-management.test',
 
     'asset_url' => 'http://event-management.test/assets',
+
+    // mysql database
+    'database' => [
+        'host' => 'localhost',
+        'database' => 'event_management',
+        'username' => 'root',
+        'password' => '',
+    ]
 ];
