@@ -2,17 +2,19 @@
 
 namespace App\Handlers;
 
-use App\Interfaces\RequestHandlerInterface;
+use App\Interfaces\RouteHandlerInterface;
 
-class RequestHandler implements RequestHandlerInterface
+class RouteHandler implements RouteHandlerInterface
 {
+
+    private static $instance;
 
     // all routes
     private array $routes = [];
     // current uri and requset method
     private string $uri, $method;
 
-    public function __construct()
+    private function __construct()
     {
         // get the uri and request method
         $this->uri = currentUri();
@@ -20,21 +22,31 @@ class RequestHandler implements RequestHandlerInterface
     }
 
     /**
+     * get instance
+     */
+    public static function load(): self
+    {
+        if (!static::$instance) {
+            static::$instance = new self();
+        }
+
+        return static::$instance;
+    }
+
+    /**
      * get route
      * @param string $uri
      * @param array $action
      * 
-     * @return RequestHandlerInterface
+     * @return void
      */
-    public function get(string $uri, array $action)
+    public function get(string $uri, array|callable $action): void
     {
         $this->routes[] = [
             'method' => 'GET',
             'uri' => $uri,
             'action' => $action
         ];
-
-        return $this;
     }
 
     /**
@@ -42,9 +54,9 @@ class RequestHandler implements RequestHandlerInterface
      * @param string $uri
      * @param array $action
      * 
-     * @return RequestHandlerInterface
+     * @return void
      */
-    public function post(string $uri, array $action)
+    public function post(string $uri, array|callable $action): void
     {
         $this->routes[] = [
             'method' => 'POST',
@@ -67,7 +79,7 @@ class RequestHandler implements RequestHandlerInterface
     /**
      * run the application
      */
-    public function run()
+    public function run(): mixed
     {
         $targetRoute = null;
         foreach ($this->routes as $route) {
@@ -80,6 +92,12 @@ class RequestHandler implements RequestHandlerInterface
         if ($targetRoute) {
             // get the action
             $action = $targetRoute['action'];
+
+            // when action is a function
+            if (is_callable($action)) {
+                return $action();
+            }
+
             [$controller, $method] = $action;
             // create instance of the controller
             $controllerInstance = new $controller();

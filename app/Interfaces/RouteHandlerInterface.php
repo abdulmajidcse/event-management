@@ -2,28 +2,28 @@
 
 namespace App\Interfaces;
 
-interface RequestHandlerInterface
+interface RouteHandlerInterface
 {
     /**
      * get route
      * @param string $uri
      * @param array $action
      * 
-     * @return RequestHandlerInterface
+     * @return void
      */
-    public function get(string $uri, array $action);
+    public function get(string $uri, array $action): void;
 
     /**
      * post route
      * @param string $uri
      * @param array $action
      * 
-     * @return RequestHandlerInterface
+     * @return void
      */
-    public function post(string $uri, array $action);
+    public function post(string $uri, array $action): void;
 
     /**
      * run the application
      */
-    public function run();
+    public function run(): mixed;
 }
