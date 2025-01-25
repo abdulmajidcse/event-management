@@ -4,6 +4,8 @@
  * All helper functions are defined here
  */
 
+use App\Handlers\ResponseHandler;
+
 /**
  * Load a view file
  * 
@@ -85,5 +87,17 @@ if (!function_exists('currentUri')) {
         $uri = str_replace($scriptName, '', $uri);
 
         return $uri;
+    }
+}
+
+if (!function_exists('response')) {
+    /**
+     * Get response instance
+     * 
+     * @return ResponseHandler
+     */
+    function response(): ResponseHandler
+    {
+        return ResponseHandler::load();
     }
 }

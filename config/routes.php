@@ -16,6 +16,7 @@ $app = new RequestHandler();
  */
 $app->get('/', [HomePage::class, 'index']);
 $app->get('/register', [RegisterPage::class, 'index']);
+$app->post('/register', [RegisterPage::class, 'store']);
 $app->get('/login', [LoginPage::class, 'index']);
 
 

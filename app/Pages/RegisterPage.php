@@ -8,4 +8,9 @@ class RegisterPage
     {
         return view('register');
     }
+
+    public function store()
+    {
+        echo response()->json($_REQUEST);
+    }
 }
