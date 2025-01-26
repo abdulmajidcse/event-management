@@ -5,6 +5,20 @@ namespace App\FormRequest;
 abstract class FormRequest
 {
     /**
+     * Class contrustor
+     */
+    public function __construct()
+    {
+        // Verify csrf token
+        if (!validateCsrfToken(request()->input('_token'))) {
+            // set csrf token error message
+            setStatusMessage('Page expired! Please, try again.', 'error');
+            redirect(oldUri());
+            exit(1);
+        }
+    }
+
+    /**
      * Set invalid data in session
      * 
      * @param array $oldData

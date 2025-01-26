@@ -19,9 +19,10 @@ class Application implements ApplicationInterface
      */
     private function __construct()
     {
-        // start session
+        // Start session
         $this->initSession();
-        // load routes
+
+        // Load routes
         $this->registerRoutes();
     }
 
@@ -32,6 +33,19 @@ class Application implements ApplicationInterface
     {
         session_start();
         session_regenerate_id(true);
+
+        // Generate CSRF token
+        $this->generateCsrfToken();
+    }
+
+    /**
+     * Generate CSRF token if not already set
+     */
+    private function generateCsrfToken()
+    {
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(40));
+        }
     }
 
     /**

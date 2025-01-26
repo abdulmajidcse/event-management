@@ -8,6 +8,8 @@
         <div class="card-body">
             <form action="<?php url('/profile') ?>" method="post">
                 <fieldset>
+                    <input type="hidden" name="_token" value="<?php echo getCsrfToken() ?>">
+
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" value="<?php echo old('name', auth()->user()->name) ?>">

@@ -19,6 +19,26 @@ class RouteHandler implements RouteHandlerInterface
         // get the uri and request method
         $this->uri = currentUri();
         $this->method = $_SERVER['REQUEST_METHOD'];
+
+        // Update url history
+        $this->updateUrlHistory();
+    }
+
+    /**
+     * Update url history
+     */
+    private function updateUrlHistory()
+    {
+        if (empty($_SESSION['current_uri'])) {
+            // set old uri
+            $_SESSION['old_uri'] = $this->uri;
+        } else {
+            // update old uri
+            $_SESSION['old_uri'] = $_SESSION['current_uri'];
+        }
+
+        // set current uri
+        $_SESSION['current_uri'] = $this->uri;
     }
 
     /**

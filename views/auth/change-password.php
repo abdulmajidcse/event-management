@@ -8,6 +8,8 @@
         <div class="card-body">
             <form action="<?php url('/change-password') ?>" method="post">
                 <fieldset>
+                    <input type="hidden" name="_token" value="<?php echo getCsrfToken() ?>">
+
                     <div class="mb-3">
                         <label for="current_password" class="form-label">Current Password</label>
                         <input type="password" class="form-control" id="current_password" name="current_password">

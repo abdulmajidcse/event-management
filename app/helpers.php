@@ -92,6 +92,18 @@ if (!function_exists('currentUri')) {
     }
 }
 
+if (!function_exists('oldUri')) {
+    /**
+     * Get old uri
+     * 
+     * @return string
+     */
+    function oldUri(): string
+    {
+        return $_SESSION['old_uri'];
+    }
+}
+
 if (!function_exists('response')) {
     /**
      * Get response instance
@@ -163,7 +175,7 @@ if (!function_exists('old')) {
             $value = $oldData[$name];
         }
 
-        return e($value);
+        return $value ? e($value) : $value;
     }
 }
 
@@ -265,5 +277,29 @@ if (!function_exists('e')) {
     function e(string $text): string
     {
         return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
+    }
+}
+
+if (!function_exists('getCsrfToken')) {
+    /**
+     * Get CSRF token
+     * 
+     * @return string
+     */
+    function getCsrfToken(): string
+    {
+        return $_SESSION['csrf_token'];
+    }
+}
+
+if (!function_exists('validateCsrfToken')) {
+    /**
+     * Validate CSRF token
+     * 
+     * @return bool
+     */
+    function validateCsrfToken(?string $token): bool
+    {
+        return hash_equals($_SESSION['csrf_token'], $token ?? '');
     }
 }
