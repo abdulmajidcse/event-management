@@ -151,6 +151,7 @@ if (!function_exists('old')) {
     function old(string $name, ?string $default = null): string|null
     {
         $oldData = [];
+        $value = $default;
 
         if (!empty($_SESSION['invalid_request_data']['old_data'])) {
             // get request validation old data
@@ -159,11 +160,10 @@ if (!function_exists('old')) {
 
         if ($name && !empty($oldData[$name])) {
             // existing old value
-            return $oldData[$name];
+            $value = $oldData[$name];
         }
 
-        // default value
-        return $default;
+        return e($value);
     }
 }
 
@@ -252,5 +252,18 @@ if (!function_exists('auth')) {
     function auth(): AuthHandler
     {
         return AuthHandler::configure();
+    }
+}
+
+if (!function_exists('e')) {
+    /**
+     * Escape value to prevent XSS attack
+     * 
+     * @param string $text
+     * @return string
+     */
+    function e(string $text): string
+    {
+        return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
     }
 }

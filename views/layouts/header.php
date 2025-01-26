@@ -28,7 +28,7 @@
                             <?php if (auth()->check()) { ?>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <?php echo auth()->user()->name; ?>
+                                        <?php echo e(auth()->user()->name); ?>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end">
                                         <li><a class="dropdown-item" href="<?php echo url('/profile') ?>">Profile</a></li>

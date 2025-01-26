@@ -7,6 +7,9 @@ abstract class FormRequest
     /**
      * Set invalid data in session
      * 
+     * @param array $oldData
+     * @param array $errors
+     * 
      * @return void
      */
     protected function invalid(array $oldData, array $errors): void
@@ -18,7 +21,7 @@ abstract class FormRequest
     }
 
     /**
-     * sanitize request data
+     * Sanitize request data
      * 
      * @param array $data
      * @param array $emailFields
@@ -29,12 +32,12 @@ abstract class FormRequest
     {
         $newData = [];
         foreach ($data as $key => $value) {
-            // sanitize special characters and trim
-            $newData[$key] = $value ? htmlspecialchars(trim($value)) : null;
-
             if (in_array($key, $emailFields)) {
                 // email filter
-                $newData[$key] = $value ? filter_var($value, FILTER_SANITIZE_EMAIL) : null;
+                $newData[$key] = $value ? filter_var($value, FILTER_SANITIZE_EMAIL) : $value;
+            } else {
+                // sanitize special characters and trim
+                $newData[$key] = $value ? filter_var(trim($value), FILTER_SANITIZE_SPECIAL_CHARS) : $value;
             }
         }
 
