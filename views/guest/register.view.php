@@ -12,25 +12,25 @@
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" value="<?php echo old('name') ?>">
+                        <input type="text" class="form-control" id="name" name="name" value="<?php echo old('name') ?>" required>
                         <div class="text-danger small"><?php echo errors('name') ?></div>
                     </div>
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<?php echo old('email') ?>">
+                        <input type="email" class="form-control" id="email" name="email" value="<?php echo old('email') ?>" required>
                         <div class="text-danger small"><?php echo errors('email') ?></div>
                     </div>
 
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password">
+                        <input type="password" class="form-control" id="password" name="password" required>
                         <div class="text-danger small"><?php echo errors('password') ?></div>
                     </div>
 
                     <div class="mb-3">
                         <label for="password_confirmation" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
                         <div class="text-danger small"><?php echo errors('password_confirmation') ?></div>
                     </div>
 

@@ -12,13 +12,13 @@
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<?php echo old('email') ?>">
+                        <input type="email" class="form-control" id="email" name="email" value="<?php echo old('email') ?>" required>
                         <div class="text-danger small"><?php echo errors('email') ?></div>
                     </div>
 
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password">
+                        <input type="password" class="form-control" id="password" name="password" required>
                         <div class="text-danger small"><?php echo errors('password') ?></div>
                     </div>
 

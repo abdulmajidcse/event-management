@@ -12,13 +12,13 @@
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" value="<?php echo old('name', auth()->user()->name) ?>">
+                        <input type="text" class="form-control" id="name" name="name" value="<?php echo old('name', auth()->user()->name) ?>" required>
                         <div class="text-danger small"><?php echo errors('name') ?></div>
                     </div>
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<?php echo old('email', auth()->user()->email) ?>">
+                        <input type="email" class="form-control" id="email" name="email" value="<?php echo old('email', auth()->user()->email) ?>" required>
                         <div class="text-danger small"><?php echo errors('email') ?></div>
                     </div>
 
