@@ -2,6 +2,8 @@
 
 namespace App\FormRequest;
 
+use App\Queries\UserQuery;
+
 class RegisterFormRequest extends FormRequest
 {
     /**
@@ -28,6 +30,9 @@ class RegisterFormRequest extends FormRequest
             $errors['email'] = 'The email field must be a valid email.';
         } else if (strlen($data['email']) > 190) {
             $errors['email'] = 'The email field must not be greater than 190 letters.';
+        } else if ((new UserQuery)->getUserByEmail($data['email'])) {
+            // Unique user email validation
+            $errors['email'] = 'The email has already been taken.';
         }
 
         // password field validation
