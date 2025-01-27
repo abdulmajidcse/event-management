@@ -24,7 +24,7 @@ if (!function_exists('view')) {
         // get view file location
         $path = str_replace('.', '/', $path);
         // load view file
-        require __DIR__ . sprintf("/../views/%s.php", $path);
+        require __DIR__ . sprintf("/../views/%s.view.php", $path);
     }
 }
 

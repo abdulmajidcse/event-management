@@ -13,7 +13,8 @@ abstract class DatabaseHandler implements DatabaseHandlerInterface
     {
         // init database connection
         $dbConfig = config('database') ?? [];
-        $dsn = sprintf('mysql:host=%s;dbname=%s', $dbConfig['host'], $dbConfig['database']);
+        $dsn = sprintf('%s:host=%s;dbname=%s', $dbConfig['driver'], $dbConfig['host'], $dbConfig['database']);
+
         $this->pdo = new PDO($dsn, $dbConfig['username'], $dbConfig['password']);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }

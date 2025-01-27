@@ -14,8 +14,8 @@ return [
 
     'asset_url' => 'http://event-management.test/assets',
 
-    // mysql database
     'database' => [
+        'driver' => 'mysql',
         'host' => 'localhost',
         'database' => 'event_management',
         'username' => 'root',
