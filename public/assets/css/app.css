@@ -8,3 +8,13 @@
         width: 500px;
     }
 }
+
+.search-button {
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 767px) {
+    .search-button {
+        margin-top: 0px;
+    }
+}

@@ -31,14 +31,14 @@ class RouteHandler implements RouteHandlerInterface
     {
         if (empty($_SESSION['current_uri'])) {
             // set old uri
-            $_SESSION['old_uri'] = $this->uri;
+            $_SESSION['old_uri'] = $this->uri . '?' . $_SERVER['QUERY_STRING'];
         } else {
             // update old uri
             $_SESSION['old_uri'] = $_SESSION['current_uri'];
         }
 
         // set current uri
-        $_SESSION['current_uri'] = $this->uri;
+        $_SESSION['current_uri'] = $this->uri . '?' . $_SERVER['QUERY_STRING'];
     }
 
     /**

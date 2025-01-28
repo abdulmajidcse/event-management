@@ -6,7 +6,7 @@
             <h5>Create an account</h5>
         </div>
         <div class="card-body">
-            <form action="<?php url('/register') ?>" method="post">
+            <form action="<?php echo url('/register') ?>" method="post">
                 <fieldset>
                     <input type="hidden" name="_token" value="<?php echo getCsrfToken() ?>">
 

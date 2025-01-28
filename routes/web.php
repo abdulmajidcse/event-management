@@ -5,6 +5,7 @@ use App\Handlers\RouteHandler;
 use App\Pages\Auth\ChangePasswordPage;
 use App\Pages\Guest\LoginPage;
 use App\Pages\Auth\DashboardPage;
+use App\Pages\Auth\EventPage;
 use App\Pages\Auth\LogoutPage;
 use App\Pages\Auth\ProfilePage;
 use App\Pages\Guest\RegisterPage;
@@ -38,3 +39,14 @@ $route->post('/profile', [ProfilePage::class, 'update']);
 $route->get('/change-password', [ChangePasswordPage::class, 'index']);
 $route->post('/change-password', [ChangePasswordPage::class, 'changePassword']);
 $route->post('/logout', [LogoutPage::class, 'logout']);
+
+/**
+ * Event routes
+ */
+$route->get('/events', [EventPage::class, 'index']);
+$route->get('/events/show', [EventPage::class, 'show']);
+$route->get('/events/create', [EventPage::class, 'create']);
+$route->post('/events/store', [EventPage::class, 'store']);
+$route->get('/events/edit', [EventPage::class, 'edit']);
+$route->post('/events/update', [EventPage::class, 'update']);
+$route->post('/events/delete', [EventPage::class, 'delete']);

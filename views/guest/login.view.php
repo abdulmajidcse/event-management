@@ -6,7 +6,7 @@
             <h5>Login to your account</h5>
         </div>
         <div class="card-body">
-            <form action="<?php url('/login') ?>" method="post">
+            <form action="<?php echo url('/login') ?>" method="post">
                 <fieldset>
                     <input type="hidden" name="_token" value="<?php echo getCsrfToken() ?>">
 

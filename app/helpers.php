@@ -100,7 +100,7 @@ if (!function_exists('oldUri')) {
      */
     function oldUri(): string
     {
-        return $_SESSION['old_uri'];
+        return !empty($_SESSION['old_uri']) ? $_SESSION['old_uri'] : '/';
     }
 }
 
