@@ -99,6 +99,6 @@ class AuthHandler implements AuthHandlerInterface
      */
     public function logout(): void
     {
-        $this->attempt(null);
+        session_destroy();
     }
 }
