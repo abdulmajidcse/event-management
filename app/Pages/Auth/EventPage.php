@@ -18,12 +18,16 @@ class EventPage
     public function index()
     {
         $data['page'] = intval(request()->query('page', 1));
+        $data['page'] = $data['page'] < 1 ? 1 : $data['page'];
         $data['perPage'] = intval(request()->query('per_page', 10));
+        $data['perPage'] = $data['perPage'] < 1 ? 10 : $data['perPage'];
         $data['sortBy'] = e(filter_var(request()->query('sort_by', 'latest'), FILTER_SANITIZE_SPECIAL_CHARS));
         $data['eventDate'] = e(filter_var(request()->query('event_date', ''), FILTER_SANITIZE_SPECIAL_CHARS));
         $data['search'] = e(filter_var(request()->query('search', ''), FILTER_SANITIZE_SPECIAL_CHARS));
 
-        $data['events'] = (new EventQuery)->getAllEventByAuthUser($data);
+        $eventData = (new EventQuery)->getAllEventByAuthUser($data);
+        $data['events'] = $eventData['events'];
+        $data['totalPages'] = $eventData['totalPages'];
 
         return view('auth.events.index', $data);
     }

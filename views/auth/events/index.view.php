@@ -93,6 +93,21 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Pagination -->
+            <div class="table-responsive">
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link <?php echo $page > 1 ? '' : 'disabled' ?>" href="<?php echo url('/events?page=' . (($page - 1) < 1 ? 1 : ($page - 1)) . '&per_page=' . $perPage) ?>">Previous</a></li>
+
+                        <?php for ($i = 1; $i <= $totalPages; $i++) { ?>
+                            <li class="<?php echo $i == $page ? 'active' : '' ?>"><a class="page-link" href="<?php echo url('/events?page=' . $i . '&per_page=' . $perPage) ?>"><?php echo $i ?></a></li>
+                        <?php } ?>
+
+                        <li class="page-item"><a class="page-link <?php echo $page < $totalPages ? '' : 'disabled' ?>" href="<?php echo url('/events?page=' . ($page + 1) . '&per_page=' . $perPage) ?>">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </div>

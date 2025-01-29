@@ -244,6 +244,37 @@ class EventQuery extends DatabaseHandler
 
         $query->execute();
 
-        return $query->fetchAll(PDO::FETCH_OBJ);
+        $queryData['events'] = $query->fetchAll(PDO::FETCH_OBJ);
+
+        // Get the total number of records
+        $totalEventQuery = $this->db()->prepare("
+            SELECT
+                COUNT(`id`)
+            FROM
+                `events`
+            WHERE
+                user_id = :user_id AND
+                (
+                `title` LIKE :search OR
+                `max_attendees` LIKE :search OR
+                `address` LIKE :search
+                )
+                 $eventDateSearch
+        ");
+
+        // binding params
+        $totalEventQuery->bindValue('user_id', auth()->user()->id, PDO::PARAM_INT);
+        $totalEventQuery->bindValue('search', sprintf('%%%s%%', $data['search']), PDO::PARAM_STR);
+        if ($data['eventDate']) {
+            $totalEventQuery->bindValue('event_date', sprintf('%%%s%%', $data['eventDate']), PDO::PARAM_STR);
+        }
+
+        $totalEventQuery->execute();
+        $totalPages = $totalEventQuery->fetchColumn();
+
+        // Calculate the total number of pages
+        $queryData['totalPages'] = ceil($totalPages / $data['perPage']);
+
+        return $queryData;
     }
 }

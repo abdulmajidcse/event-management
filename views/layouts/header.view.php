@@ -25,7 +25,16 @@
                             <li class="nav-item">
                                 <a class="nav-link <?php echo currentUri() == '/' ? 'active' : '' ?>" aria-current="page" href="<?php echo url('/') ?>">Home</a>
                             </li>
+
                             <?php if (auth()->check()) { ?>
+                                <li class="nav-item">
+                                    <a class="nav-link <?php echo currentUri() == '/events' ? 'active' : '' ?>" href="<?php echo url('/events') ?>">Event List</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link <?php echo currentUri() == '/events/create' ? 'active' : '' ?>" href="<?php echo url('/events/create') ?>">Create Event</a>
+                                </li>
+
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <?php echo e(auth()->user()->name); ?>
@@ -52,6 +61,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link <?php echo currentUri() == '/login' ? 'active' : '' ?>" href="<?php echo url('/login') ?>">Login</a>
                                 </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link <?php echo currentUri() == '/register' ? 'active' : '' ?>" href="<?php echo url('/register') ?>">Register</a>
                                 </li>
