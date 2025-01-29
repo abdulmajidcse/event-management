@@ -87,7 +87,7 @@
                             <?php }
                         } else { ?>
                             <tr>
-                                <td colspan="5" class="text-danger text-center">No data found! Please, broaden your search.</td>
+                                <td colspan="6" class="text-danger text-center">No data found! Please, broaden your search.</td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -100,8 +100,12 @@
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link <?php echo $page > 1 ? '' : 'disabled' ?>" href="<?php echo url('/events?page=' . (($page - 1) < 1 ? 1 : ($page - 1)) . '&per_page=' . $perPage) ?>">Previous</a></li>
 
-                        <?php for ($i = 1; $i <= $totalPages; $i++) { ?>
-                            <li class="<?php echo $i == $page ? 'active' : '' ?>"><a class="page-link" href="<?php echo url('/events?page=' . $i . '&per_page=' . $perPage) ?>"><?php echo $i ?></a></li>
+                        <?php if ($totalPages > 0) {
+                            for ($i = 1; $i <= $totalPages; $i++) { ?>
+                                <li class="<?php echo $i == $page ? 'active' : '' ?>"><a class="page-link" href="<?php echo url('/events?page=' . $i . '&per_page=' . $perPage) ?>"><?php echo $i ?></a></li>
+                            <?php }
+                        } else { ?>
+                            <li class="<?php echo 1 == $page ? 'active' : '' ?>"><a class="page-link" href="<?php echo url('/events?page=1') ?>">1</a></li>
                         <?php } ?>
 
                         <li class="page-item"><a class="page-link <?php echo $page < $totalPages ? '' : 'disabled' ?>" href="<?php echo url('/events?page=' . ($page + 1) . '&per_page=' . $perPage) ?>">Next</a></li>

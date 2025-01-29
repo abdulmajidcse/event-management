@@ -165,20 +165,22 @@ class EventQuery extends DatabaseHandler
         $oderColumn = 'id';
         $oderType = 'DESC';
 
-        if ($data['sortBy'] == 'oldest') {
-            $oderType = 'ASC';
-        } else if ($data['sortBy'] == 'title_asc') {
-            $oderColumn = 'title';
-            $oderType = 'ASC';
-        } else if ($data['sortBy'] == 'title_desc') {
-            $oderColumn = 'title';
-            $oderType = 'DESC';
-        } else if ($data['sortBy'] == 'max_attendees_asc') {
-            $oderColumn = 'max_attendees';
-            $oderType = 'ASC';
-        } else if ($data['sortBy'] == 'max_attendees_desc') {
-            $oderColumn = 'max_attendees';
-            $oderType = 'DESC';
+        if (!empty($data['sortBy'])) {
+            if ($data['sortBy'] == 'oldest') {
+                $oderType = 'ASC';
+            } else if ($data['sortBy'] == 'title_asc') {
+                $oderColumn = 'title';
+                $oderType = 'ASC';
+            } else if ($data['sortBy'] == 'title_desc') {
+                $oderColumn = 'title';
+                $oderType = 'DESC';
+            } else if ($data['sortBy'] == 'max_attendees_asc') {
+                $oderColumn = 'max_attendees';
+                $oderType = 'ASC';
+            } else if ($data['sortBy'] == 'max_attendees_desc') {
+                $oderColumn = 'max_attendees';
+                $oderType = 'DESC';
+            }
         }
 
         // user id query
