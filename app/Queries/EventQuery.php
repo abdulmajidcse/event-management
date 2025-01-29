@@ -152,42 +152,13 @@ class EventQuery extends DatabaseHandler
 
     /**
      * Get all event
-     * 
-     * @param int $page
-     * @param int $perPage
-     * 
-     * @return array
-     */
-    public function getAllEvent(int $page, int $perPage = 10): array
-    {
-        $query = $this->db()->prepare("
-            SELECT
-                *
-            FROM
-                `events`
-            ORDER BY
-                `id`
-            DESC
-            LIMIT :offset, :per_page
-        ");
-
-        $offset = ($page - 1) * $perPage;
-        $query->bindValue('offset', $offset, PDO::PARAM_INT);
-        $query->bindValue('per_page', $perPage, PDO::PARAM_INT);
-
-        $query->execute();
-
-        return $query->fetchAll(PDO::FETCH_OBJ);
-    }
-
-    /**
-     * Get all event by authenticated user
+     * With search feature and pagination
      * 
      * @param array $data
      * 
      * @return array
      */
-    public function getAllEventByAuthUser(array $data): array
+    public function getAllEvent(array $data): array
     {
 
         // get order by info
@@ -210,8 +181,10 @@ class EventQuery extends DatabaseHandler
             $oderType = 'DESC';
         }
 
-        // event date querye
-        $eventDateSearch = $data['eventDate'] ? 'AND `event_date` LIKE :event_date' : '';
+        // user id query
+        $userIdSearch = !empty($data['userId']) ? 'user_id = :user_id AND' : '';
+        // event date query
+        $eventDateSearch = !empty($data['eventDate']) ? 'AND `event_date` LIKE :event_date' : '';
 
         $query = $this->db()->prepare("
             SELECT
@@ -219,7 +192,7 @@ class EventQuery extends DatabaseHandler
             FROM
                 `events`
             WHERE
-                user_id = :user_id AND
+                $userIdSearch
                 (
                 `title` LIKE :search OR
                 `max_attendees` LIKE :search OR
@@ -234,9 +207,11 @@ class EventQuery extends DatabaseHandler
 
         // binding params
         $offset = ($data['page'] - 1) * $data['perPage'];
-        $query->bindValue('user_id', auth()->user()->id, PDO::PARAM_INT);
+        if (!empty($data['userId'])) {
+            $query->bindValue('user_id', $data['userId'], PDO::PARAM_INT);
+        }
         $query->bindValue('search', sprintf('%%%s%%', $data['search']), PDO::PARAM_STR);
-        if ($data['eventDate']) {
+        if (!empty($data['eventDate'])) {
             $query->bindValue('event_date', sprintf('%%%s%%', $data['eventDate']), PDO::PARAM_STR);
         }
         $query->bindValue('per_page', $data['perPage'], PDO::PARAM_INT);
@@ -253,7 +228,7 @@ class EventQuery extends DatabaseHandler
             FROM
                 `events`
             WHERE
-                user_id = :user_id AND
+                $userIdSearch
                 (
                 `title` LIKE :search OR
                 `max_attendees` LIKE :search OR
@@ -263,9 +238,11 @@ class EventQuery extends DatabaseHandler
         ");
 
         // binding params
-        $totalEventQuery->bindValue('user_id', auth()->user()->id, PDO::PARAM_INT);
+        if (!empty($data['userId'])) {
+            $totalEventQuery->bindValue('user_id', $data['userId'], PDO::PARAM_INT);
+        }
         $totalEventQuery->bindValue('search', sprintf('%%%s%%', $data['search']), PDO::PARAM_STR);
-        if ($data['eventDate']) {
+        if (!empty($data['eventDate'])) {
             $totalEventQuery->bindValue('event_date', sprintf('%%%s%%', $data['eventDate']), PDO::PARAM_STR);
         }
 

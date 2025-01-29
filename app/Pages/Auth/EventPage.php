@@ -24,8 +24,9 @@ class EventPage
         $data['sortBy'] = e(filter_var(request()->query('sort_by', 'latest'), FILTER_SANITIZE_SPECIAL_CHARS));
         $data['eventDate'] = e(filter_var(request()->query('event_date', ''), FILTER_SANITIZE_SPECIAL_CHARS));
         $data['search'] = e(filter_var(request()->query('search', ''), FILTER_SANITIZE_SPECIAL_CHARS));
+        $data['userId'] = auth()->user()->id;
 
-        $eventData = (new EventQuery)->getAllEventByAuthUser($data);
+        $eventData = (new EventQuery)->getAllEvent($data);
         $data['events'] = $eventData['events'];
         $data['totalPages'] = $eventData['totalPages'];
 
