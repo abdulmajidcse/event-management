@@ -21,6 +21,7 @@ $route = RouteHandler::load();
  * Public routes
  */
 $route->get('/', [HomePage::class, 'index']);
+$route->get('/event-details', [HomePage::class, 'eventDetails']);
 
 /**
  * Guest routes

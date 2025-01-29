@@ -31,8 +31,9 @@
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $event->title; ?></h5>
                                 <p class="card-text"><strong>Max Attendees:</strong> <?php echo $event->max_attendees; ?></p>
+                                <p class="card-text"><strong>Event Date:</strong> <?php echo $event->event_date ?></p>
                                 <p class="card-text"><strong>Address:</strong> <?php echo $event->address; ?></p>
-                                <a href="#" class="btn btn-primary">See Details</a>
+                                <a href="<?php echo url('/event-details?id=' . $event->id); ?>" class="btn btn-primary">See Details</a>
                             </div>
                         </div>
                     <?php }

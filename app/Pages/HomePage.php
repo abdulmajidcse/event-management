@@ -21,4 +21,21 @@ class HomePage
 
         return view('home', $data);
     }
+
+    /**
+     * Event details
+     */
+    public function eventDetails()
+    {
+        $id = intval(request()->query('id'));
+        $data['event'] = (new EventQuery)->getEventById($id);
+
+        // 404 page when event data not found or id empty
+        if (!$data['event']) {
+            notFoundView();
+            exit;
+        }
+
+        return view('event-details', $data);
+    }
 }
