@@ -9,27 +9,32 @@
         <div class="card-body">
             <div class="mb-3">
                 <label for="title" class="form-label"><strong>Title</strong></label>
-                <div><?php echo $event->title ?></div>
+                <div><?php echo $event->title; ?></div>
             </div>
 
             <div class="mb-3">
                 <label for="event_date" class="form-label"><strong>Event Date</strong></label>
-                <div><?php echo $event->event_date ?></div>
+                <div><?php echo $event->event_date; ?></div>
             </div>
 
             <div class="mb-3">
                 <label for="max_attendees" class="form-label"><strong>Max Attendees</strong></label>
-                <div><?php echo $event->max_attendees ?></div>
+                <div><?php echo $event->max_attendees; ?></div>
+            </div>
+           
+            <div class="mb-3">
+                <label for="attendees_count" class="form-label"><strong>Registered</strong></label>
+                <div><?php echo $event->attendees_count; ?></div>
             </div>
 
             <div class="mb-3">
                 <label for="address" class="form-label"><strong>Address</strong></label>
-                <div><?php echo $event->address ?></div>
+                <div><?php echo $event->address; ?></div>
             </div>
 
             <div class="mb-3">
                 <label for="description" class="form-label"><strong>Description</strong></label>
-                <div><?php echo $event->description ?></div>
+                <div><?php echo $event->description; ?></div>
             </div>
         </div>
     </div>

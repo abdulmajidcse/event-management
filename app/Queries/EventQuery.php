@@ -7,7 +7,6 @@ use PDO;
 
 class EventQuery extends DatabaseHandler
 {
-
     /**
      * Create a new event
      * 
@@ -111,7 +110,15 @@ class EventQuery extends DatabaseHandler
         // event find query
         $query = $this->db()->prepare("
             SELECT
-                *
+                *,
+                (
+                SELECT
+                    COUNT(`attendees`.`id`)
+                FROM
+                    `attendees`
+                WHERE
+                    `event_id` = `events`.`id`
+            ) AS 'attendees_count'
             FROM
                 `events`
             WHERE
@@ -190,21 +197,24 @@ class EventQuery extends DatabaseHandler
 
         $query = $this->db()->prepare("
             SELECT
-                *
+                *,
+                (
+                SELECT
+                    COUNT(`attendees`.`id`)
+                FROM
+                    `attendees`
+                WHERE
+                    `event_id` = `events`.`id`
+            ) AS 'attendees_count'
             FROM
                 `events`
             WHERE
-                $userIdSearch
-                (
-                `title` LIKE :search OR
-                `max_attendees` LIKE :search OR
-                `address` LIKE :search
-                )
-                 $eventDateSearch
+                $userIdSearch(
+                    `title` LIKE :search OR `max_attendees` LIKE :search OR `address` LIKE :search
+                ) $eventDateSearch
             ORDER BY
-                $oderColumn
-            $oderType
-            LIMIT :per_page OFFSET :offset
+                $oderColumn $oderType
+                        LIMIT :per_page OFFSET :offset
         ");
 
         // binding params

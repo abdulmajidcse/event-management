@@ -57,6 +57,7 @@
                             <th scope="col">Event Date</th>
                             <th scope="col">Address</th>
                             <th scope="col">Max Attendees</th>
+                            <th scope="col">Registered</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -69,6 +70,7 @@
                                     <td><?php echo $event->event_date ?></td>
                                     <td><?php echo $event->address; ?></td>
                                     <td><?php echo $event->max_attendees; ?></td>
+                                    <td><?php echo $event->attendees_count; ?></td>
                                     <td>
                                         <div class="d-flex gap-1">
                                             <a href="<?php echo url('/events/show?id=' . $event->id); ?>" class="btn btn-primary btn-sm">View</a>
@@ -87,7 +89,7 @@
                             <?php }
                         } else { ?>
                             <tr>
-                                <td colspan="6" class="text-danger text-center">No data found! Please, broaden your search.</td>
+                                <td colspan="7" class="text-danger text-center">No data found! Please, broaden your search.</td>
                             </tr>
                         <?php } ?>
                     </tbody>
