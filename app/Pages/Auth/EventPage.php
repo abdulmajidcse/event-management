@@ -2,6 +2,7 @@
 
 namespace App\Pages\Auth;
 
+use App\FormRequest\CsrfFormRequest;
 use App\FormRequest\EventFormRequest;
 use App\Queries\EventQuery;
 
@@ -150,6 +151,9 @@ class EventPage
     public function delete()
     {
         try {
+            // validate csrf token
+            new CsrfFormRequest;
+
             $id = intval(request()->query('id'));
             if (!$id || !(new EventQuery)->getEventById($id)) {
                 // 404 page when id or event not found

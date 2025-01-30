@@ -47,6 +47,7 @@
                                         </li>
                                         <li>
                                             <form method="POST" action="<?php echo url('/logout'); ?>">
+                                                <input type="hidden" name="_token" value="<?php echo getCsrfToken(); ?>">
                                                 <a href="<?php echo url('/logout'); ?>"
                                                     class="dropdown-item"
                                                     onclick="event.preventDefault();

@@ -76,6 +76,7 @@
                                             <a href="<?php echo url('/events/show?id=' . $event->id); ?>" class="btn btn-primary btn-sm">View</a>
                                             <a href="<?php echo url('/events/edit?id=' . $event->id); ?>" class="btn btn-success btn-sm">Edit</a>
                                             <form method="POST" action="<?php echo url('/events/delete?id=' . $event->id); ?>">
+                                                <input type="hidden" name="_token" value="<?php echo getCsrfToken(); ?>">
                                                 <a href="<?php echo url('/events/delete?id=' . $event->id); ?>"
                                                     class="btn btn-danger btn-sm"
                                                     onclick="event.preventDefault();
