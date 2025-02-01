@@ -36,6 +36,10 @@
 
                             <?php if (auth()->check()) { ?>
                                 <li class="nav-item">
+                                    <a class="nav-link <?php echo currentUri() == '/dashboard' ? 'active' : '' ?>" href="<?php echo url('/dashboard') ?>">Dashboard</a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a class="nav-link <?php echo currentUri() == '/events' ? 'active' : '' ?>" href="<?php echo url('/events') ?>">Event List</a>
                                 </li>
 
