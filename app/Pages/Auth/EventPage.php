@@ -177,4 +177,44 @@ class EventPage
             return redirect('/events');
         }
     }
+
+    /**
+     * Download attendee CSV report
+     */
+    public function downloadAttendeeCsv()
+    {
+        // validate csrf token
+        new CsrfFormRequest;
+
+        $event = $this->getSpecificEvent();
+        $attendees = (new EventQuery)->getAllAttendees($event->id);
+
+        if (count($attendees) < 1) {
+            // set warning message
+            setStatusMessage('Failed to download attendee CSV report! Because, no attendee in this event. Thank you!', 'warning');
+            return redirect(oldUri());
+        }
+
+        // Set the headers to force download
+        header('Content-Type: text/csv');
+        header("Content-Disposition: attachment;filename=events_{$event->id}_attendee_report.csv");
+
+        // Open the outpur stream
+        $output = fopen('php://output', 'w');
+        // Output the column headings
+        fputcsv($output, ['ID', 'Event ID', 'Name', 'Email', 'Address']);
+        // Output the attendee data
+        foreach ($attendees as $attendee) {
+            fputcsv($output, [
+                $attendee->id,
+                $attendee->event_id,
+                $attendee->name,
+                $attendee->email,
+                $attendee->address,
+            ]);
+        }
+
+        fclose($output);
+        exit;
+    }
 }

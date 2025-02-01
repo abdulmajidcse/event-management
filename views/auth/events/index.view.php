@@ -73,6 +73,14 @@
                                     <td><?php echo $event->attendees_count; ?></td>
                                     <td>
                                         <div class="d-flex gap-1">
+                                            <form method="POST" action="<?php echo url('/events/download-attendee-csv?id=' . $event->id); ?>">
+                                                <input type="hidden" name="_token" value="<?php echo getCsrfToken(); ?>">
+                                                <a href="<?php echo url('/events/download-attendee-csv?id=' . $event->id); ?>"
+                                                    class="btn btn-warning btn-sm"
+                                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                                    CSV
+                                                </a>
+                                            </form>
                                             <a href="<?php echo url('/events/show?id=' . $event->id); ?>" class="btn btn-primary btn-sm">View</a>
                                             <a href="<?php echo url('/events/edit?id=' . $event->id); ?>" class="btn btn-success btn-sm">Edit</a>
                                             <form method="POST" action="<?php echo url('/events/delete?id=' . $event->id); ?>">

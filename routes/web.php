@@ -54,3 +54,5 @@ $route->post('/events/store', [EventPage::class, 'store']);
 $route->get('/events/edit', [EventPage::class, 'edit']);
 $route->post('/events/update', [EventPage::class, 'update']);
 $route->post('/events/delete', [EventPage::class, 'delete']);
+// attendee report via csv
+$route->post('/events/download-attendee-csv', [EventPage::class, 'downloadAttendeeCsv']);
