@@ -45,10 +45,15 @@ class EventRegisterFormRequest extends FormRequest
         }
 
         if (count($errors) > 0) {
-            // invalid data
-            $this->invalid($data, $errors);
+            if (request()->isAjax()) {
+                echo response()->json(['errors' => $errors], 422);
+                exit;
+            } else {
+                // invalid data
+                $this->invalid($data, $errors);
 
-            return redirect(oldUri());
+                return redirect(oldUri());
+            }
         }
 
         return $data;

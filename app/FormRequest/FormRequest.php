@@ -11,9 +11,13 @@ abstract class FormRequest
     {
         // Verify csrf token
         if (!validateCsrfToken(request()->input('_token'))) {
-            // set csrf token error message
-            setStatusMessage('Page expired! Please, try again.', 'error');
-            redirect(oldUri());
+            if (request()->isAjax()) {
+                echo response()->json(['message' => 'Page expired! Please, try again.'], 422);
+            } else {
+                // set csrf token error message
+                setStatusMessage('Page expired! Please, try again.', 'error');
+                redirect(oldUri());
+            }
             exit(1);
         }
     }

@@ -21,7 +21,7 @@
                 <label for="max_attendees" class="form-label"><strong>Max Attendees</strong></label>
                 <div><?php echo $event->max_attendees; ?></div>
             </div>
-            
+
             <div class="mb-3">
                 <label for="registered" class="form-label"><strong>Registered</strong></label>
                 <div><?php echo $event->attendees_count; ?></div>
@@ -37,7 +37,7 @@
                 <div><?php echo $event->description; ?></div>
             </div>
 
-            <a href="<?php echo url('/event-register?id=' . $event->id); ?>" class="btn btn-primary">Register Now on Event</a>
+            <a href="<?php echo url('/event-register?id=' . $event->id); ?>" class="btn btn-danger">Register Now on Event</a>
         </div>
     </div>
 </div>

@@ -8,7 +8,7 @@ use App\Pages\Auth\DashboardPage;
 use App\Pages\Auth\EventPage;
 use App\Pages\Auth\LogoutPage;
 use App\Pages\Auth\ProfilePage;
-use App\Pages\EventRegister;
+use App\Pages\EventRegisterPage;
 use App\Pages\Guest\RegisterPage;
 
 // route instance
@@ -23,8 +23,8 @@ $route = RouteHandler::load();
  */
 $route->get('/', [HomePage::class, 'index']);
 $route->get('/event-details', [HomePage::class, 'eventDetails']);
-$route->get('/event-register', [EventRegister::class, 'form']);
-$route->post('/event-register', [EventRegister::class, 'store']);
+$route->get('/event-register', [EventRegisterPage::class, 'form']);
+$route->post('/event-register', [EventRegisterPage::class, 'store']);
 
 /**
  * Guest routes

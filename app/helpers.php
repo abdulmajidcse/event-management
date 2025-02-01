@@ -31,9 +31,15 @@ if (!function_exists('view')) {
 if (!function_exists('notFoundView')) {
     function notFoundView(array $data = [])
     {
-        http_response_code(404);
-        // default 404 view
-        return view('errors.404', $data);
+        if (request()->isAjax()) {
+            echo response()->json(['message' => 'Not found.'], 422);
+        } else {
+            http_response_code(404);
+            // default 404 view
+            view('errors.404', $data);
+        }
+
+        exit;
     }
 }
 

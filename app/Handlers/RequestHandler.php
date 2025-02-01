@@ -59,4 +59,19 @@ class RequestHandler implements RequestHandlerInterface
         // all data
         return $_REQUEST;
     }
+
+    /**
+     * Detect ajax reqeust
+     * 
+     * @return bool
+     */
+    public function isAjax(): bool
+    {
+        // Detect if the request is an AJAX request
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH'])) {
+            return strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';;
+        }
+
+        return false;
+    }
 }
