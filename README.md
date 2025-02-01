@@ -79,6 +79,7 @@ Password: AbcD1@3+
 
 It's almost same as other PHP application deployment process.
 <br/>
-**But remember one thing, you must define `public` directory as your project root directory.**
+- But remember one thing, you must define `public` directory as your project root directory.
+- set `debug` = `false` from `config/app.php`
 
 ### Thank you!
