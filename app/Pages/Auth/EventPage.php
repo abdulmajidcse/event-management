@@ -2,6 +2,7 @@
 
 namespace App\Pages\Auth;
 
+use App\FormRequest\CsrfFormRequest;
 use App\FormRequest\EventFormRequest;
 use App\Queries\EventQuery;
 
@@ -24,8 +25,9 @@ class EventPage
         $data['sortBy'] = e(filter_var(request()->query('sort_by', 'latest'), FILTER_SANITIZE_SPECIAL_CHARS));
         $data['eventDate'] = e(filter_var(request()->query('event_date', ''), FILTER_SANITIZE_SPECIAL_CHARS));
         $data['search'] = e(filter_var(request()->query('search', ''), FILTER_SANITIZE_SPECIAL_CHARS));
+        $data['userId'] = auth()->user()->id;
 
-        $eventData = (new EventQuery)->getAllEventByAuthUser($data);
+        $eventData = (new EventQuery)->getAllEvent($data);
         $data['events'] = $eventData['events'];
         $data['totalPages'] = $eventData['totalPages'];
 
@@ -100,6 +102,7 @@ class EventPage
     public function show()
     {
         $data['event'] = $this->getSpecificEvent();
+        $data['attendees'] = (new EventQuery)->getAllAttendees($data['event']->id);
 
         return view('auth.events.show', $data);
     }
@@ -149,6 +152,9 @@ class EventPage
     public function delete()
     {
         try {
+            // validate csrf token
+            new CsrfFormRequest;
+
             $id = intval(request()->query('id'));
             if (!$id || !(new EventQuery)->getEventById($id)) {
                 // 404 page when id or event not found

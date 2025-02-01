@@ -9,7 +9,7 @@
         <div class="card-body">
             <form action="<?php echo $event?->id ? url('/events/update?id=' . $event->id) : url('/events/store'); ?>" method="post">
                 <fieldset>
-                    <input type="hidden" name="_token" value="<?php echo getCsrfToken() ?>">
+                    <input type="hidden" name="_token" value="<?php echo getCsrfToken(); ?>">
 
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>

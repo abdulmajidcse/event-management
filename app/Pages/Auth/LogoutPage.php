@@ -2,11 +2,14 @@
 
 namespace App\Pages\Auth;
 
+use App\FormRequest\CsrfFormRequest;
+
 class LogoutPage
 {
     public function __construct()
     {
         auth()->middleware('auth');
+        new CsrfFormRequest;
     }
 
     /**

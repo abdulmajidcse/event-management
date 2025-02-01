@@ -57,6 +57,7 @@
                             <th scope="col">Event Date</th>
                             <th scope="col">Address</th>
                             <th scope="col">Max Attendees</th>
+                            <th scope="col">Registered</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -64,16 +65,18 @@
                         <?php if (count($events) > 0) {
                             foreach ($events as $key => $event) { ?>
                                 <tr>
-                                    <th scope="row"><?php echo $key + 1; ?></th>
+                                    <th scope="row"><?php echo (($page - 1) * $perPage) + $key + 1; ?></th>
                                     <td><?php echo $event->title; ?></td>
                                     <td><?php echo $event->event_date ?></td>
                                     <td><?php echo $event->address; ?></td>
                                     <td><?php echo $event->max_attendees; ?></td>
+                                    <td><?php echo $event->attendees_count; ?></td>
                                     <td>
                                         <div class="d-flex gap-1">
                                             <a href="<?php echo url('/events/show?id=' . $event->id); ?>" class="btn btn-primary btn-sm">View</a>
                                             <a href="<?php echo url('/events/edit?id=' . $event->id); ?>" class="btn btn-success btn-sm">Edit</a>
                                             <form method="POST" action="<?php echo url('/events/delete?id=' . $event->id); ?>">
+                                                <input type="hidden" name="_token" value="<?php echo getCsrfToken(); ?>">
                                                 <a href="<?php echo url('/events/delete?id=' . $event->id); ?>"
                                                     class="btn btn-danger btn-sm"
                                                     onclick="event.preventDefault();
@@ -87,7 +90,7 @@
                             <?php }
                         } else { ?>
                             <tr>
-                                <td colspan="5" class="text-danger text-center">No data found! Please, broaden your search.</td>
+                                <td colspan="7" class="text-danger text-center">No data found! Please, broaden your search.</td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -100,8 +103,12 @@
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link <?php echo $page > 1 ? '' : 'disabled' ?>" href="<?php echo url('/events?page=' . (($page - 1) < 1 ? 1 : ($page - 1)) . '&per_page=' . $perPage) ?>">Previous</a></li>
 
-                        <?php for ($i = 1; $i <= $totalPages; $i++) { ?>
-                            <li class="<?php echo $i == $page ? 'active' : '' ?>"><a class="page-link" href="<?php echo url('/events?page=' . $i . '&per_page=' . $perPage) ?>"><?php echo $i ?></a></li>
+                        <?php if ($totalPages > 0) {
+                            for ($i = 1; $i <= $totalPages; $i++) { ?>
+                                <li class="<?php echo $i == $page ? 'active' : '' ?>"><a class="page-link" href="<?php echo url('/events?page=' . $i . '&per_page=' . $perPage) ?>"><?php echo $i ?></a></li>
+                            <?php }
+                        } else { ?>
+                            <li class="<?php echo 1 == $page ? 'active' : '' ?>"><a class="page-link" href="<?php echo url('/events?page=1') ?>">1</a></li>
                         <?php } ?>
 
                         <li class="page-item"><a class="page-link <?php echo $page < $totalPages ? '' : 'disabled' ?>" href="<?php echo url('/events?page=' . ($page + 1) . '&per_page=' . $perPage) ?>">Next</a></li>
