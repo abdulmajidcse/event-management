@@ -29,16 +29,17 @@ class RouteHandler implements RouteHandlerInterface
      */
     private function updateUrlHistory()
     {
+        $queryString = !empty($_SERVER["QUERY_STRING"]) ? ('?' . $_SERVER["QUERY_STRING"]) : '';
         if (empty($_SESSION['current_uri'])) {
             // set old uri
-            $_SESSION['old_uri'] = $this->uri . '?' . $_SERVER['QUERY_STRING'];
+            $_SESSION['old_uri'] = $this->uri . $queryString;
         } else {
             // update old uri
             $_SESSION['old_uri'] = $_SESSION['current_uri'];
         }
 
         // set current uri
-        $_SESSION['current_uri'] = $this->uri . '?' . $_SERVER['QUERY_STRING'];
+        $_SESSION['current_uri'] = $this->uri . $queryString;
     }
 
     /**

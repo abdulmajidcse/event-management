@@ -88,7 +88,8 @@ if (!function_exists('currentUri')) {
     function currentUri(): string
     {
         // get request uri
-        $uri = str_replace('?' . $_SERVER["QUERY_STRING"], '', $_SERVER["REQUEST_URI"]);
+        $queryString = !empty($_SERVER["QUERY_STRING"]) ? ('?' . $_SERVER["QUERY_STRING"]) : '';
+        $uri = str_replace($queryString, '', $_SERVER["REQUEST_URI"]);
         // get server script name
         $scriptName = str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']);
         // remove script name from path as a uri
