@@ -132,6 +132,28 @@ class EventQuery extends DatabaseHandler
     }
 
     /**
+     * Get all atteendees by event id
+     * 
+     * @param int $eventId
+     * 
+     * @return mixed
+     */
+    public function getAllAttendees(int $eventId): mixed
+    {
+        // event find query
+        $query = $this->db()->prepare("
+            SELECT *
+            FROM
+                `attendees`
+            WHERE
+                `event_id` = ?
+        ");
+        $query->execute([$eventId]);
+
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
      * Single event data by title
      * 
      * @param string $title

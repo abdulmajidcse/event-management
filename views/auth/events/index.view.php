@@ -65,7 +65,7 @@
                         <?php if (count($events) > 0) {
                             foreach ($events as $key => $event) { ?>
                                 <tr>
-                                    <th scope="row"><?php echo $key + 1; ?></th>
+                                    <th scope="row"><?php echo (($page - 1) * $perPage) + $key + 1; ?></th>
                                     <td><?php echo $event->title; ?></td>
                                     <td><?php echo $event->event_date ?></td>
                                     <td><?php echo $event->address; ?></td>
