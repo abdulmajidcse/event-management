@@ -39,7 +39,18 @@
                 </div>
             </div>
 
-            <h5 class="mt-5"><strong>Attendee Information</strong></h5>
+            <div class="d-md-flex justify-content-between mt-4 mb-2">
+                <h5><strong>Attendee Information</strong></h5>
+                <form method="POST" action="<?php echo url('/events/download-attendee-csv?id=' . $event->id); ?>">
+                    <input type="hidden" name="_token" value="<?php echo getCsrfToken(); ?>">
+                    <a href="<?php echo url('/events/download-attendee-csv?id=' . $event->id); ?>"
+                        class="btn btn-warning btn-sm"
+                        onclick="event.preventDefault(); this.closest('form').submit();">
+                        Download CSV
+                    </a>
+                </form>
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-hover table-bordered">
                     <thead class="table-light">
