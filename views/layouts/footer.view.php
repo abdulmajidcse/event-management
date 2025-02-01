@@ -9,6 +9,14 @@
 <script src="<?php echo asset('/js/bootstrap.bundle.min.js') ?>"></script>
 <script src="<?php echo asset('/js/sweetalert2.all.min.js') ?>"></script>
 
+<script>
+    // page loader turn off when page loaded
+    window.addEventListener('load', function() {
+        const pageLoader = document.getElementById('page_loader');
+        pageLoader?.classList.add('d-none');
+    });
+</script>
+
 <?php
 $statusMessage = getStatusMessage();
 if (!empty($statusMessage['message']) && !empty($statusMessage['type'])) {
