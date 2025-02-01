@@ -13,7 +13,7 @@
 
 <body>
     <!-- page loading spinner -->
-    <div id="page_loader" class="d-flex align-items-center justify-content-center position-fixed z-3 bg-light" style="width: 100vw; height: 100vh;">
+    <div id="page_loader" class="d-flex align-items-center justify-content-center position-fixed bg-light" style="width: 100vw; height: 100vh; z-index: 9999;">
         <button class="btn btn-primary" type="button" disabled>
             <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
             <span role="status">Please wait...</span>
