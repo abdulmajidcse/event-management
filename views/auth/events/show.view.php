@@ -51,6 +51,19 @@
                 </form>
             </div>
 
+            <form action="<?php echo url('/events/show') ?>" method="get">
+                <input type="hidden" name="id" value="<?php echo $event->id; ?>">
+                <div class="d-md-flex gap-3">
+                    <div class="mb-4">
+                        <input type="text" class="form-control" id="search" name="search" value="<?php echo $search ?>" placeholder="e.g., atttendee name...">
+                    </div>
+
+                    <div class="mb-4">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+
             <div class="table-responsive">
                 <table class="table table-hover table-bordered">
                     <thead class="table-light">
@@ -73,7 +86,7 @@
                             <?php }
                         } else { ?>
                             <tr>
-                                <td colspan="4" class="text-danger text-center">No data found!</td>
+                                <td colspan="4" class="text-danger text-center">No data found! Please, broaden your search.</td>
                             </tr>
                         <?php } ?>
                     </tbody>

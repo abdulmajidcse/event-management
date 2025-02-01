@@ -102,7 +102,8 @@ class EventPage
     public function show()
     {
         $data['event'] = $this->getSpecificEvent();
-        $data['attendees'] = (new EventQuery)->getAllAttendees($data['event']->id);
+        $data['search'] = e(filter_var(request()->query('search', ''), FILTER_SANITIZE_SPECIAL_CHARS));
+        $data['attendees'] = (new EventQuery)->getAllAttendees($data['event']->id, $data['search']);
 
         return view('auth.events.show', $data);
     }
