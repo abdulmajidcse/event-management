@@ -8,17 +8,7 @@ The Event Management System is a web-based application designed to help users pl
 
 ## Demo usage
 
-**Demo URL:** https://event.abdulmajid.com.bd/
-
-**Demo Crendetials**
-
-```bash
-Email: abdulmajid@gmail.com
-Password: AbcD1@3+
-
-Email: faruk@gmail.com
-Password: AbcD1@3+
-```
+**Demo URL:** https://event.abdulmajid.dev/
 
 - Visit the demo URL and register your account if you don't have an account yet.
 - After login, you may see your dashaboard where has event list, create, edit and delete feature.
@@ -26,7 +16,7 @@ Password: AbcD1@3+
 - Anyone can see event list in homepage and read details.
 - An attendee must be register in an event from event details page.
 - Admin can see his events attendee list and can download attendee report as CSV file.
-- For event details API endpoint: `https://event.abdulmajid.com.bd/api/event-details?id=3`
+- For event details API endpoint: `https://event.abdulmajid.dev/api/event-details?id=3`
 - Here `id` is an event id.
 
 ## Features
@@ -79,6 +69,7 @@ Password: AbcD1@3+
 
 It's almost same as other PHP application deployment process.
 <br/>
+
 - But remember one thing, you must define `public` directory as your project root directory.
 - set `debug` = `false` from `config/app.php`
 
